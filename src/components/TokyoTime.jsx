@@ -12,7 +12,6 @@ const TokyoTime = () => {
   const timeString = time.toLocaleTimeString('en-GB', options);
 
   return (
-    /* Added h-full and w-full to ensure it fills the GlassCard */
     <div className="flex flex-col justify-center items-center h-full w-full space-y-4">
       <span className="text-4xl font-mono font-bold text-white tracking-widest drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
         {timeString}

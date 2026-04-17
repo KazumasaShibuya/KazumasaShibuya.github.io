@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import GlassCard from './components/GlassCard';
 import TechOrbit from './components/TechOrbit';
-import ExperienceCard from './components/ExperienceCard';
 import TokyoTime from './components/TokyoTime';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { useIsMobile } from './hooks/useIsMobile';
@@ -33,7 +32,7 @@ const itemVariants = {
 };
 
 const headerVariants = {
-  hidden: { x: -1500, opacity: 0 }, // Starts 100px to the right
+  hidden: { x: -1500, opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
@@ -151,7 +150,7 @@ function App() {
                         }}
                       />
 
-                      {/* Optional: Secondary Blur Layer for extra "Bloom" */}
+                      
 
                     </div>
                   </div>
@@ -200,7 +199,7 @@ function App() {
                         }}
                       />
 
-                      {/* Optional: Secondary Blur Layer for extra "Bloom" */}
+        
                       
                     </div>
                   </div>
@@ -219,7 +218,7 @@ function App() {
                         }}
                       />
 
-                      {/* Optional: Secondary Blur Layer for extra "Bloom" */}
+                     
                       
                     </div>
                   </div>
@@ -283,7 +282,7 @@ function App() {
                         }}
                       />
 
-                      {/* Optional: Secondary Blur Layer for extra "Bloom" */}
+                    
 
                     </div>
                   </div>
@@ -319,7 +318,7 @@ function App() {
                         }}
                       />
 
-                      {/* Optional: Secondary Blur Layer for extra "Bloom" */}
+                
                       
                     </div>
                   </div>
@@ -338,7 +337,7 @@ function App() {
                         }}
                       />
 
-                      {/* Optional: Secondary Blur Layer for extra "Bloom" */}
+                    
                       
                     </div>
                   </div>
