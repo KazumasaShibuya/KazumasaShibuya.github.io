@@ -18,7 +18,7 @@ export const data = {
   languages: {
     heading: "言語",
     items: [
-      { title: "英語", progress: 100, fluency: "ネイティブレベル" },
+      { title: "英語", progress: 100, fluency: "ネイティブ" },
       { title: "日本語", progress: 90, fluency: "流暢" },
     ],
   },

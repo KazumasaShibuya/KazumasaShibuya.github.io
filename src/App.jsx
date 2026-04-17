@@ -48,62 +48,78 @@ function App() {
     <div className="min-h-screen bg-[#050505] text-neutral-200 relative font-sans selection:bg-purple-500/30">
 
       {/* --- BACKGROUND ORBITS --- */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-[100%] -left-[100%] w-[300%] h-[300%] transform-gpu"
-          style={{ willChange: "transform" }}
-        >
-          {/* Pink Glow */}
-          <div
-            className="absolute top-1/4 left-1/2 -translate-x-1/2 rounded-full"
-            style={{
-              height: isMobile ? '400px' : '900px',
-              width: isMobile ? '400px' : '900ox',
-              background: 'radial-gradient(circle, rgba(253, 77, 165, 0.15) 0%, transparent 70%)'
-            }}
-          />
-          <div
-            className="absolute top-1/3 left-1/3 rounded-full"
-            style={{
-              height: isMobile ? '400px' : '900px',
-              width: isMobile ? '400px' : '900px',
-              background: 'radial-gradient(circle, rgba(255, 45, 45, 0.15) 0%, transparent 70%)'
-            }}
-          />
-        </motion.div>
-      </div>
+      {/* --- BACKGROUND ORBITS --- */}
+      {[0, isMobile ? 1 : null].map((instance, i) => {
+        if (instance === null) return null;
 
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div
-          animate={{
-            rotate: -360,
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-[100%] -right-[100%] w-[300%] h-[300%] transform-gpu"
-          style={{ willChange: "transform" }}
-        >
-          {/* Blue Glow */}
-          <div
-            className="absolute bottom-1/4 left-1/2 -translate-x-1/2 rounded-full"
-            style={{
-              height: isMobile ? '400px' : '900px',
-              width: isMobile ? '400px' : '900px',
-              background: 'radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%)'
-            }}
-          />
-          {/* Cyan Glow */}
-          <div
-            className="absolute bottom-1/2 left-1/4 rounded-full"
-            style={{
-              height: isMobile ? '400px' : '900px',
-              width: isMobile ? '400px' : '900px',
-              background: 'radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%)'
-            }}
-          />
-        </motion.div>
-      </div>
+        return (
+          <React.Fragment key={i}>
+            {/* Top/Primary Orbit Set */}
+            <div className={`absolute inset-0 pointer-events-none overflow-hidden ${isMobile && i === 1 ? 'top-1/2 h-1/2' : isMobile ? 'top-0 h-1/2' : ''}`}>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                className={`absolute transform-gpu ${isMobile
+                  ? "-top-[20%] -left-[20%] w-[140%] h-[140%]"
+                  : "-top-[100%] -left-[100%] w-[300%] h-[300%]"
+                  }`}
+                style={{ willChange: "transform" }}
+              >
+                {/* Pink Glow */}
+                <div
+                  className="absolute top-1/4 left-1/2 -translate-x-1/2 rounded-full"
+                  style={{
+                    height: isMobile ? "400px" : "900px",
+                    width: isMobile ? "400px" : "900px",
+                    background: 'radial-gradient(circle, rgba(253, 77, 165, 0.15) 0%, transparent 70%)'
+                  }}
+                />
+                {/* Red Glow */}
+                <div
+                  className="absolute top-1/3 left-1/3 rounded-full"
+                  style={{
+                    height: isMobile ? '400px' : '900px',
+                    width: isMobile ? '400px' : '900px',
+                    background: 'radial-gradient(circle, rgba(255, 45, 45, 0.15) 0%, transparent 70%)'
+                  }}
+                />
+              </motion.div>
+            </div>
+
+            {/* Bottom/Secondary Orbit Set */}
+            <div className={`absolute inset-0 pointer-events-none overflow-hidden ${isMobile && i === 1 ? 'top-1/2 h-1/2' : isMobile ? 'top-0 h-1/2' : ''}`}>
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                className={`absolute transform-gpu ${isMobile
+                  ? "-bottom-[20%] -right-[20%] w-[140%] h-[140%]"
+                  : "-bottom-[100%] -right-[100%] w-[300%] h-[300%]"
+                  }`}
+                style={{ willChange: "transform" }}
+              >
+                {/* Blue Glow */}
+                <div
+                  className="absolute bottom-1/4 left-1/2 -translate-x-1/2 rounded-full"
+                  style={{
+                    height: isMobile ? '400px' : '900px',
+                    width: isMobile ? '400px' : '900px',
+                    background: 'radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%)'
+                  }}
+                />
+                {/* Cyan Glow */}
+                <div
+                  className="absolute bottom-1/2 left-1/4 rounded-full"
+                  style={{
+                    height: isMobile ? '400px' : '900px',
+                    width: isMobile ? '400px' : '900px',
+                    background: 'radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%)'
+                  }}
+                />
+              </motion.div>
+            </div>
+          </React.Fragment>
+        );
+      })}
 
       {/* --- CONTENT LAYER --- */}
       <motion.div
@@ -131,11 +147,11 @@ function App() {
               </span>
             </span>
           </h1>
-          <p className="text-xl text-neutral-500 font-mono mt-2">{data.title}</p>
+          <p className="text-xl text-neutral-500 font-mono mt-4 mb-4">{data.title}</p>
           <LanguageToggle />
           <p className="text-xl text-neutral-400 max-w-lg leading-relaxed">
           </p>
-        </motion.header>
+        </motion.header >
 
         {/* The Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-fr">
@@ -158,10 +174,22 @@ function App() {
             <>
               {/* 2. LinkedIn (1x1 Square) */}
               <motion.div variants={itemVariants} className="aspect-square">
-                <GlassCard className="h-full flex flex-col items-center justify-center group border-white/5 hover:border-blue-500/50 transition-colors">
-                  <a href="https://www.linkedin.com/in/kazumasa-shibuya/" target="_blank" rel="noopener noreferrer" className="h-full block">
-                    <FaLinkedinIn size={85} className="text-[#0077B5]" />
-                    <span className="mt-4 text-[18px] font-mono uppercase tracking-[0.2em] text-white">{data.linkedin}</span>
+                <GlassCard className="h-full p-0 overflow-hidden group border-white/5 hover:border-blue-500/50 transition-colors">
+                  <a
+                    href="https://www.linkedin.com/in/kazumasa-shibuya/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative z-20 h-full w-full flex flex-col items-center justify-center p-4 text-center"
+                  >
+                    {/* 2. Color starts white/gray and changes to LinkedIn blue only on hover */}
+                    <FaLinkedinIn
+                      size={85}
+                      className="text-[#0077B5] scale-110 translate-y-17 -translate-x-0.5"
+                    />
+
+                    <span className="mt-6 text-[20px] font-mono uppercase tracking-[0.2em] text-white translate-y-12">
+                      {data.linkedin}
+                    </span>
                   </a>
                 </GlassCard>
               </motion.div>
@@ -282,12 +310,25 @@ function App() {
             <>
               {/* 2. LinkedIn (1x1 Square) */}
               <motion.div variants={itemVariants} className="aspect-square">
-                <a href="https://www.linkedin.com/in/kazumasa-shibuya/" target="_blank" rel="noopener noreferrer" className="h-full block">
-                  <GlassCard className="h-full flex flex-col items-center justify-center group border-white/5 hover:border-blue-500/50 transition-colors">
-                    <FaLinkedinIn size={85} className=" group-hover:text-[#0077B5] transition-all duration-500 group-hover:scale-110" />
-                    <span className="mt-4 text-[18px] font-mono uppercase tracking-[0.2em] text-neutral-600 group-hover:text-white">{data.linkedin}</span>
-                  </GlassCard>
-                </a>
+                <GlassCard className="h-full p-0 overflow-hidden group border-white/5 hover:border-blue-500/50 transition-colors">
+                  <a
+                    href="https://www.linkedin.com/in/kazumasa-shibuya/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    /* 1. Added relative z-20 to ensure the link sits ABOVE the background glint/blur */
+                    className="relative z-20 h-full w-full flex flex-col items-center justify-center p-4 text-center"
+                  >
+                    {/* 2. Color starts white/gray and changes to LinkedIn blue only on hover */}
+                    <FaLinkedinIn
+                      size={85}
+                      className="text-white/40 group-hover:text-[#0077B5] group-hover:scale-110 transition-all duration-300 translate-y-5 -translate-x-0.5"
+                    />
+
+                    <span className="mt-6 text-[18px] font-mono uppercase tracking-[0.2em] text-white/60 group-hover:text-white transition-colors">
+                      {data.linkedin}
+                    </span>
+                  </a>
+                </GlassCard>
               </motion.div>
 
               {/* 3. Tokyo Time (1x1 Square) */}
@@ -342,7 +383,7 @@ function App() {
                     <div className="h-1 w-8 bg-blue-500 mt-1" />
                     <div className="flex justify-between items-end mb-2 mt-6">
                       <h3 className="text-[18px] font-mono text-neutral-500 uppercase tracking-[0.2em]">{data.languages.items[0].title}</h3>
-                      <span className="text-[14px] font-mono text-neutral-500 uppercase tracking-[0.2em]">{data.languages.items[0].status}</span>
+                      <span className="text-[14px] font-mono text-neutral-500 uppercase tracking-[0.2em]">{data.languages.items[0].fluency}</span>
                     </div>
                     <div className="h-2 w-full bg-white/5 rounded-full relative"> {/* Removed overflow-hidden */}
                       <div
@@ -361,7 +402,7 @@ function App() {
                   <div className="mt-8">
                     <div className="flex justify-between items-end mb-2 mt-6">
                       <h3 className="text-[18px] font-mono text-neutral-500 uppercase tracking-[0.2em]">{data.languages.items[1].title}</h3>
-                      <span className="text-[14px] font-mono text-neutral-500 uppercase tracking-[0.2em]">{data.languages.items[1].status}</span>
+                      <span className="text-[14px] font-mono text-neutral-500 uppercase tracking-[0.2em]">{data.languages.items[1].fluency}</span>
                     </div>
                     <div className="h-2 w-full bg-white/5 rounded-full relative"> {/* Removed overflow-hidden */}
                       <div
@@ -396,7 +437,7 @@ function App() {
               <motion.div variants={itemVariants} className="md:col-span-2">
                 <GlassCard className="h-full flex items-center p-8">
                   <p className="text-s font-mono text-neutral-600 leading-relaxed uppercase">
-                    Focused on building high-performance applications with a focus on type-safety and organic scalability.
+                    Focused on the world's, biology, technology, problems, and solutions
                   </p>
                 </GlassCard>
               </motion.div>
