@@ -300,7 +300,7 @@ function App() {
               <motion.div variants={itemVariants} className="md:col-span-2">
                 <GlassCard className="h-full flex items-center p-8">
                   <p className="text-s font-mono text-neutral-600 leading-relaxed uppercase">
-                    Focused on building high-performance applications with a focus on type-safety and organic scalability.
+                    Focused on the world's, biology, technology, problems, and solutions.
                   </p>
                 </GlassCard>
               </motion.div>
@@ -437,7 +437,7 @@ function App() {
               <motion.div variants={itemVariants} className="md:col-span-2">
                 <GlassCard className="h-full flex items-center p-8">
                   <p className="text-s font-mono text-neutral-600 leading-relaxed uppercase">
-                    Focused on the world's, biology, technology, problems, and solutions
+                    Focused on the world's, biology, technology, problems, and solutions.
                   </p>
                 </GlassCard>
               </motion.div>
