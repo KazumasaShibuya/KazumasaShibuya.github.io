@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useIsMobile } from "../hooks/useIsMobile"; // Import your hook
-import { 
-  SiReact, SiNodedotjs, SiTailwindcss, SiTypescript, SiFramer, 
+import {
+  SiReact, SiNodedotjs, SiTailwindcss, SiTypescript, SiFramer,
   SiPython, SiDotnet, SiSqlalchemy, SiFastapi
 } from "react-icons/si";
 import { DiJava } from "react-icons/di";
@@ -10,7 +10,7 @@ import { TbBrandCSharp } from "react-icons/tb";
 
 const TechOrbit = () => {
   const isMobile = useIsMobile();
-  
+
   const icons = [
     { Icon: SiReact, color: "#61DAFB" },
     { Icon: SiTypescript, color: "#3178C6" },
@@ -34,11 +34,11 @@ const TechOrbit = () => {
   const containerMinHeight = isMobile ? "300px" : "550px";
 
   return (
-    <div 
+    <div
       className="relative w-full h-full flex items-center justify-center overflow-visible"
       style={{ minHeight: containerMinHeight }}
     >
-      
+
       {/* Central Core (Smaller on Mobile) */}
       <div className={`relative z-10 ${isMobile ? 'w-6 h-6' : 'w-12 h-12'} rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md`}>
         <div className="w-1.5 h-1.5 rounded-full bg-white/40 animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
@@ -48,24 +48,27 @@ const TechOrbit = () => {
       {icons.map((item, index) => {
         const ringIndex = index % 2;
         const radius = ringIndex === 0 ? innerRadius : outerRadius;
-        
         const iconsInRing = ringIndex === 0 ? Math.ceil(icons.length / 2) : Math.floor(icons.length / 2);
         const startAngle = (360 / iconsInRing) * Math.floor(index / 2);
 
         return (
           <motion.div
             key={index}
-            className="absolute"
+            // 1. "transform-gpu" moves the rotation to the GPU
+            className="absolute transform-gpu"
             initial={{ rotate: startAngle }}
             animate={{ rotate: startAngle + 360 }}
             transition={{
               duration: SPEED,
               repeat: Infinity,
               ease: "linear",
+              delay: 1,
             }}
             style={{
               width: `${radius * 2}px`,
               height: `${radius * 2}px`,
+              // 2. will-change tells the browser to optimize this specific property
+              willChange: "transform",
             }}
           >
             <motion.div
@@ -75,13 +78,20 @@ const TechOrbit = () => {
                 duration: SPEED,
                 repeat: Infinity,
                 ease: "linear",
+                delay: 1,
               }}
-              className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              // 3. Adding transform-gpu and forcing translateZ(0) for maximum acceleration
+              className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 transform-gpu"
+              style={{
+                willChange: "transform",
+                transform: "translateZ(0)" // The "Force GPU" hack
+              }}
             >
-              <item.Icon 
+              <item.Icon
                 size={iconSize}
-                style={{ color: item.color }} 
-        
+                style={{
+                  color: item.color,
+                }}
               />
             </motion.div>
           </motion.div>

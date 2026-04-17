@@ -23,7 +23,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { y: 2000, opacity: 0 },
+  hidden: { y: 1500, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -32,7 +32,7 @@ const itemVariants = {
 };
 
 const headerVariants = {
-  hidden: { x: -1500, opacity: 0 },
+  hidden: { x: -1000, opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
@@ -50,23 +50,58 @@ function App() {
       {/* --- BACKGROUND ORBITS --- */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          animate={{ rotate: 360, scale: [1, 1.05, 1] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-[100%] -left-[100%] w-[300%] h-[300%]"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-[100%] -left-[100%] w-[300%] h-[300%] transform-gpu"
+          style={{ willChange: "transform" }}
         >
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 h-[900px] w-[900px] rounded-full bg-pink-500/8 blur-[120px]" />
-          <div className="absolute top-1/3 left-1/3 h-[900px] w-[900px] rounded-full bg-red-600/8 blur-[150px]" />
+          {/* Pink Glow */}
+          <div
+            className="absolute top-1/4 left-1/2 -translate-x-1/2 rounded-full"
+            style={{
+              height: isMobile ? '400px' : '900px',
+              width: isMobile ? '400px' : '900ox',
+              background: 'radial-gradient(circle, rgba(253, 77, 165, 0.15) 0%, transparent 70%)'
+            }}
+          />
+          <div
+            className="absolute top-1/3 left-1/3 rounded-full"
+            style={{
+              height: isMobile ? '400px' : '900px',
+              width: isMobile ? '400px' : '900px',
+              background: 'radial-gradient(circle, rgba(255, 45, 45, 0.15) 0%, transparent 70%)'
+            }}
+          />
         </motion.div>
       </div>
 
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          animate={{ rotate: -360, scale: [1, 1.1, 1] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-[100%] -right-[100%] w-[300%] h-[300%]"
+          animate={{
+            rotate: -360,
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-[100%] -right-[100%] w-[300%] h-[300%] transform-gpu"
+          style={{ willChange: "transform" }}
         >
-          <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 h-[900px] w-[900px] rounded-full bg-blue-600/8 blur-[150px]" />
-          <div className="absolute bottom-1/2 left-1/4 h-[900px] w-[900px] rounded-full bg-cyan-500/8 blur-[150px]" />
+          {/* Blue Glow */}
+          <div
+            className="absolute bottom-1/4 left-1/2 -translate-x-1/2 rounded-full"
+            style={{
+              height: isMobile ? '400px' : '900px',
+              width: isMobile ? '400px' : '900px',
+              background: 'radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%)'
+            }}
+          />
+          {/* Cyan Glow */}
+          <div
+            className="absolute bottom-1/2 left-1/4 rounded-full"
+            style={{
+              height: isMobile ? '400px' : '900px',
+              width: isMobile ? '400px' : '900px',
+              background: 'radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%)'
+            }}
+          />
         </motion.div>
       </div>
 
@@ -99,7 +134,7 @@ function App() {
           <p className="text-xl text-neutral-500 font-mono mt-2">{data.title}</p>
           <LanguageToggle />
           <p className="text-xl text-neutral-400 max-w-lg leading-relaxed">
-  </p>
+          </p>
         </motion.header>
 
         {/* The Bento Grid */}
@@ -150,7 +185,7 @@ function App() {
                         }}
                       />
 
-                      
+
 
                     </div>
                   </div>
@@ -199,8 +234,8 @@ function App() {
                         }}
                       />
 
-        
-                      
+
+
                     </div>
                   </div>
 
@@ -218,8 +253,8 @@ function App() {
                         }}
                       />
 
-                     
-                      
+
+
                     </div>
                   </div>
                 </GlassCard>
@@ -282,7 +317,7 @@ function App() {
                         }}
                       />
 
-                    
+
 
                     </div>
                   </div>
@@ -318,8 +353,8 @@ function App() {
                         }}
                       />
 
-                
-                      
+
+
                     </div>
                   </div>
 
@@ -337,8 +372,8 @@ function App() {
                         }}
                       />
 
-                    
-                      
+
+
                     </div>
                   </div>
                 </GlassCard>
